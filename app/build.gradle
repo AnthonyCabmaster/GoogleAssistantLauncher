@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'anthony'
+            keyPassword 'Untouchable365'
+            storeFile file('C:/Users/Anthony/Documents/GoogleAssistantLauncher/app/key.jks')
+            storePassword 'Untouchable365'
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.loapps.googleassistantlauncher"
@@ -8,15 +16,19 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+        signingConfig signingConfigs.config
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    productFlavors {
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
 }
